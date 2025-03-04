@@ -10,10 +10,9 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const Contact =()=>{
     return(
-        <Box sx={{height:"auto", width:"100%", backgroundColor: "#FFDEE9",
-            backgroundImage: "linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)" }}>
-            <Grid container sx={{height:"auto"}} >
-                <Grid item lg={12} md={12} sm={12} xs={12} sx={{height:"220px",width:"100%"}}></Grid>
+        <Box sx={{height:"auto", width:"100%"
+             }}>
+            <Grid container id="contact-section" sx={{height:"auto",marginTop:"30px",marginBottom:"125px"}} >
                 <Grid item lg={12} md={12} sm={12} xs={12}  sx={{height:"25px",width:"100%"}}><Typography sx={{color:"dodgerblue",textAlign:"center"}}>Contact Me</Typography></Grid>
                 <Grid item lg={12} md={12} sm={12} xs={12}  sx={{height:"50px",width:"100%"}}><Typography sx={{fontSize:"30px",fontWeight:"700", color:"darkblue",textAlign:"center"}}>Get in Touch</Typography></Grid>
                 <Grid container sx={{height:"auto",width:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>

@@ -9,11 +9,9 @@ import Photo from './Profile-img.png'
 
 const Home =()=>{
   return(
-    <Box sx={{height:"auto", width:"100%", backgroundColor: "#FFDEE9",
-            backgroundImage: "linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)"
-      }}>
+    <Box id="home-section" sx={{height:"auto", width:"100%", backgroundColor:"#e4e4e4"}}>
         <Grid container  sx={{height:"auto"}}>
-        <Grid item sx={{height:"175px",width:"100%"}}></Grid>
+        <Grid item sx={{height:"85px",width:"100%",backgroundColor:"#e4e4e4"}}></Grid>
           <Grid item lg={6} md={6} sm={12} xs={12} sx={{height:"450px",textAlign:"center"}}>
             <Grid item sx={{height:"25px", width:"100%",textAlign:"center",  paddingLeft:"40px"}}><Typography sx={{color:"dodgerblue"}}>Hi, I am</Typography></Grid>
             <Grid item sx={{height:"50px",width:"100%",paddingLeft:"40px"}}><Typography sx={{fontSize:"35px",fontWeight:"700", color:"darkblue"}}>Merfina</Typography></Grid>
@@ -23,10 +21,12 @@ const Home =()=>{
                   Download CV
                 </Button>
           </Grid>
-          <Grid item lg={6} md={6} sm={12} xs={12}  sx={{height:"auto",width:"auto", display:"flex",justifyContent:"center"}}>
+          <Grid item lg={6} md={6} sm={12} xs={12}  sx={{height:"auto",width:"auto", display:"flex",justifyContent:"center",overflow:"visible"}}>
             
-            <Grid item sx={{height:"300px", width:"400px",paddingLeft:"50px"}}>
-            <img src={Photo} alt="Not found" style={{height:"100%",width:"100%"}} />
+            <Grid item sx={{height:"450px",width:"450px",border:"2px solid blue",borderRadius:"10px"}}>
+                <img src={Photo} alt="Not found" style={{width: "100%",
+              height: "100%", 
+              }} />
             </Grid>
           </Grid>
         </Grid>

@@ -6,53 +6,62 @@ import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-
-
-
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = [
+  { name: 'Home', id: 'home-section' },
+  { name: 'About', id: 'about-section' },
+  {name:"Skills",id:"skills-section"},
+  { name: 'Contact', id: 'contact-section' }
+];
 
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState)
+    setMobileOpen((prevState) => !prevState);
+  };
+
+  const handleScroll = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setMobileOpen(false); 
+    } else {
+      console.error(`Element with ID "${id}" not found`);
+    }
   };
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{  my: 2 }}>
+      <Typography variant="h6" sx={{ my: 2 }}>
         My Portfolio
       </Typography>
       <Divider />
       <List>
-        {/* {navItems.map((item) => ( */}
-          <ListItem  disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary="Home" />
-            </ListItemButton>
-          </ListItem>
-        {/* ))}  */}
+        {navItems.map((item) => (
+          <Button 
+            key={item.name} 
+            onClick={() => handleScroll(item.id)} 
+            sx={{ color: 'black', display: 'block', width: '100%' }}
+          >
+            {item.name}
+          </Button>
+        ))}
       </List>
     </Box>
   );
-
-  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar component="nav">
-        <Toolbar sx={{backgroundColor:"#70FBF6"}}>
+        <Toolbar sx={{ backgroundColor: 'white' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -62,44 +71,41 @@ function DrawerAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{color:"black", flexGrow: 1, paddingLeft:"20px", fontFamily:"initial", display: { xs: 'none', sm: 'block' } }}
-          >
+          <Typography variant="h6" sx={{ flexGrow: 1, paddingLeft: '20px',color:"black" }}>
             My Portfolio
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-              <Button href='/' sx={{ color: 'black' }}>
-                Home
+            {navItems.map((item) => (
+              <Button 
+                key={item.name} 
+                onClick={() => handleScroll(item.id)}
+                sx={{color:"black"}}
+              >
+                {item.name}
               </Button>
-              <Button href='/About' sx={{ color: 'black' }}>
-                About
-              </Button>
-              <Button href='/Contact' sx={{ color: 'black' }}>
-                Contact
-              </Button>
+            ))}
           </Box>
         </Toolbar>
       </AppBar>
       <nav>
         <Drawer
-          container={container}
+          container={window !== undefined ? () => window().document.body : undefined}
           variant="temporary"
+          anchor="left"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
+          ModalProps={{ keepMounted: true }}
           sx={{
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
           {drawer}
-        </Drawer>              
+        </Drawer>
       </nav>
+      <Toolbar />
     </Box>
-  )
+  );
 }
+
 export default DrawerAppBar;
